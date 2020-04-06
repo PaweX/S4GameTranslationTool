@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CharacterSetConverter.cpp" />
+    <ClCompile Include="DataStorage.cpp" />
+    <ClCompile Include="GtkApp.cpp" />
+    <ClCompile Include="LangFileLoader.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SettingsFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CharacterSetConverter.h" />
+    <ClInclude Include="DataStorage.h" />
+    <ClInclude Include="GtkApp.h" />
+    <ClInclude Include="LangFileLoader.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SettingsFile.h" />
+    <ClInclude Include="unlibs4-dll.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="S4GameTranslationTool.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Debug\s4gtt-icon.ico" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{B8515970-A28D-4FC1-BD5D-27FA944C8796}</ProjectGuid>
+    <RootNamespace>S4GameTranslationTool</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);</ExecutablePath>
+    <LibraryPath>E:\Programowanie\Biblioteki\gtk+\lib;E:\Programowanie\Biblioteki\gtk+\bin;E:\Programowanie\Biblioteki\libiconv-1.15\bin\include\win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Programowanie\Biblioteki\gtk+\include\gtk-3.0;E:\Programowanie\Biblioteki\gtk+\include\glib-2.0;E:\Programowanie\Biblioteki\gtk+\include\atk-1.0;E:\Programowanie\Biblioteki\gtk+\include\cairo;E:\Programowanie\Biblioteki\gtk+\include\fontconfig;E:\Programowanie\Biblioteki\gtk+\include\freetype2;E:\Programowanie\Biblioteki\gtk+\include\gail-3.0;E:\Programowanie\Biblioteki\gtk+\include\gdk-pixbuf-2.0;E:\Programowanie\Biblioteki\gtk+\include\gio-win32-2.0;E:\Programowanie\Biblioteki\gtk+\include\jasper;E:\Programowanie\Biblioteki\gtk+\include\libcroco-0.6;E:\Programowanie\Biblioteki\gtk+\include\libpng15;E:\Programowanie\Biblioteki\gtk+\include\librsvg-2.0;E:\Programowanie\Biblioteki\gtk+\include\libxml2;E:\Programowanie\Biblioteki\gtk+\include\lzma;E:\Programowanie\Biblioteki\gtk+\include\pango-1.0;E:\Programowanie\Biblioteki\gtk+\include\pixman-1;E:\Programowanie\Biblioteki\gtk+\include;E:\Programowanie\Biblioteki\gtk+\lib\glib-2.0\include;E:\Programowanie\Biblioteki\libiconv-1.15\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH)</ExecutablePath>
+    <LibraryPath>E:\Programowanie\Biblioteki\gtk+\lib;E:\Programowanie\Biblioteki\gtk+\bin;E:\Programowanie\Biblioteki\libiconv-1.15\bin\include\win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Programowanie\Biblioteki\gtk+\include\gtk-3.0;E:\Programowanie\Biblioteki\gtk+\include\glib-2.0;E:\Programowanie\Biblioteki\gtk+\include\atk-1.0;E:\Programowanie\Biblioteki\gtk+\include\cairo;E:\Programowanie\Biblioteki\gtk+\include\fontconfig;E:\Programowanie\Biblioteki\gtk+\include\freetype2;E:\Programowanie\Biblioteki\gtk+\include\gail-3.0;E:\Programowanie\Biblioteki\gtk+\include\gdk-pixbuf-2.0;E:\Programowanie\Biblioteki\gtk+\include\gio-win32-2.0;E:\Programowanie\Biblioteki\gtk+\include\jasper;E:\Programowanie\Biblioteki\gtk+\include\libcroco-0.6;E:\Programowanie\Biblioteki\gtk+\include\libpng15;E:\Programowanie\Biblioteki\gtk+\include\librsvg-2.0;E:\Programowanie\Biblioteki\gtk+\include\libxml2;E:\Programowanie\Biblioteki\gtk+\include\lzma;E:\Programowanie\Biblioteki\gtk+\include\pango-1.0;E:\Programowanie\Biblioteki\gtk+\include\pixman-1;E:\Programowanie\Biblioteki\gtk+\include;E:\Programowanie\Biblioteki\gtk+\lib\glib-2.0\include;E:\Programowanie\Biblioteki\libiconv-1.15\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>glib-2.0.lib;cairo.lib;pango-1.0.lib;atk-1.0.lib;gdk_pixbuf-2.0.lib;gtk-3.0.lib;gobject-2.0.lib;gdk-3.0.lib;gio-2.0.lib;unlibs4.lib;libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>NotSet</SubSystem>
+      <Version>
+      </Version>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glib-2.0.lib;cairo.lib;pango-1.0.lib;atk-1.0.lib;gdk_pixbuf-2.0.lib;gtk-3.0.lib;gobject-2.0.lib;gdk-3.0.lib;unlibs4.lib;libiconv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
