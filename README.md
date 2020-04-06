@@ -39,9 +39,3 @@ History Edition language files can work in older editions of S4, however please 
         
 ## Dependencies:
 This software is running against **GTK+ 3.21.1**. It's using the GTK+ toolkit and its dependencies.
-
-
-
-
-
-I give no warranty of any kind to this software and anything related to it.
