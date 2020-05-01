@@ -10,7 +10,7 @@ If you made some corrections to one of the language trasnaltions for The Settler
 # Discord Server - Settlers IV Modding
 https://discord.gg/qsetQRb
 
-This is the list of the game languages:
+# This is the list of the game languages:
 
 ## Classic Settlers IV:
 
