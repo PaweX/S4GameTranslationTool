@@ -7,12 +7,12 @@ The program is in beta version and you can find it here:
 If you made some corrections to one of the language trasnaltions for The Settlers IV, please share it. **Especially if you made a completely new game trasnlation.**
 [Link to the Settlers IV Language Translations](https://github.com/PaweX/Settlers_IV_Language_Translations)
 
-# Discord Server - Settlers IV Modding
+## Discord Server - Settlers IV Modding
 https://discord.gg/qsetQRb
 
-# This is the list of the game languages:
+## This is the list of the game languages:
 
-## Classic Settlers IV:
+### Classic Settlers IV:
 
         0 ENGLISH
         1 GERMAN
@@ -35,7 +35,7 @@ https://discord.gg/qsetQRb
         
 Future translations can be added to the game after number '18', however they can use only standard ANSI.
   
-## Settlers IV History Edition:
+### Settlers IV History Edition:
 
 This tool can work with the History Edition.
 History Edition language files can work in older editions of S4, however please note that one text was changed. In this program it is a text of number 446. In the original version of S4, the text is talking about "30min" while the text from History Edition is talking about "15min".
