@@ -7,6 +7,9 @@ The program is in beta version and you can find it here:
 If you made some corrections to one of the language trasnaltions for The Settlers IV, please share it. **Especially if you made a completely new game trasnlation.**
 [Link to the Settlers IV Language Translations](https://github.com/PaweX/Settlers_IV_Language_Translations)
 
+## Discord server - Settlers IV Modding
+https://discord.gg/qsetQRb
+
 This is the list of the game languages:
 
 ## Classic Settlers IV:
