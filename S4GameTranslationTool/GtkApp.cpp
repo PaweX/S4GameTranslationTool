@@ -385,7 +385,18 @@ extern "C"
 
 			std::string strText;
 			if (!GtkApp::Set::libiconvEncoding)
-				strText = g_locale_to_utf8(text, textLength, NULL, NULL, NULL); // convert to utf-8
+			{
+				//try // check if the conversion doesn't fail
+				//{
+					strText = g_locale_to_utf8(text, textLength, NULL, NULL, NULL); // convert to utf-8
+				//}
+				/*catch (...)
+				{
+					const char *message = "Exception: Function LangDataAddToArray_utf8conv:\nText conversion failed.";
+					GtkApp::ShowUserAMessage(message);
+					CLangFileLoader::SendMessage(message);
+				}*/
+			}
 			else
 			{
 				CCharacterSetConverter *pTextConv = CCharacterSetConverter::GetConverter();
@@ -398,8 +409,9 @@ extern "C"
 				{
 					if (!pTextConv->ConvertText(text, textLength, &strText))
 					{
-						GtkApp::ShowUserAMessage("Error: Text conversion failed. Did you use the right encoding?");
-						CLangFileLoader::SendMessage("Error: Text conversion failed. Did you use the right encoding?");
+						const char *message = "Error: Function LangDataAddToArray_utf8conv:\nText conversion failed.\nDid you use the right encoding?";
+						GtkApp::ShowUserAMessage(message);
+						CLangFileLoader::SendMessage(message);
 						return;
 					}
 				}
@@ -447,7 +459,18 @@ extern "C"
 		{
 			std::string strText;
 			if (!GtkApp::Set::libiconvEncoding)
-				strText = g_locale_to_utf8(text, textLength, NULL, NULL, NULL); // convert to utf-8
+			{
+				//try // check if the conversion doesn't fail
+				//{
+					strText = g_locale_to_utf8(text, textLength, NULL, NULL, NULL); // convert to utf-8
+				//}
+				/*catch (...)
+				{
+					const char *message = "Exception: Function LangDataSwapText_utf8conv:\nText conversion failed.";
+					GtkApp::ShowUserAMessage(message);
+					CLangFileLoader::SendMessage(message);
+				}*/
+			}
 			else
 			{
 				CCharacterSetConverter *pTextConv = CCharacterSetConverter::GetConverter();
@@ -460,8 +483,9 @@ extern "C"
 				{
 					if(!pTextConv->ConvertText(text, textLength, &strText))
 					{
-						GtkApp::ShowUserAMessage("Error: Text conversion failed. Did you use the right encoding?");
-						CLangFileLoader::SendMessage("Error: Text conversion failed. Did you use the right encoding?");
+						const char *message = "Error: Function LangDataSwapText_utf8conv:\nText conversion failed.\nDid you use the right encoding?";
+						GtkApp::ShowUserAMessage(message);
+						CLangFileLoader::SendMessage(message);
 						return;
 					}
 				}
@@ -500,7 +524,20 @@ extern "C"
 			//if (!CDataStorage::Get()->GetIgnoreSave(uTxtPos)) // P: moved to LangFileLoader.cpp
 			
 			if (!GtkApp::Set::libiconvEncoding)
-				text = g_locale_from_utf8(utf8Text, -1, NULL, &numChar, NULL); // convert from utf-8
+			{
+				//try // check if the conversion doesn't fail
+				//{
+					text = g_locale_from_utf8(utf8Text, -1, NULL, &numChar, NULL); // convert from utf-8
+				//}
+				/*catch (...)
+				{
+					const char *message = "Exception: Function LangDataGetFromArray:\nText conversion failed.\n"
+											"Maybe in some texts you have UNICODE special characters that can't be converted?\n"
+											"Try to use 'ICONV Encoding' with option 'ICONV Ignore'.";
+					GtkApp::ShowUserAMessage(message);
+					CLangFileLoader::SendMessage(message);
+				}*/
+			}
 			else
 			{
 				CCharacterSetConverter *pTextConv = CCharacterSetConverter::GetConverter();
@@ -513,8 +550,11 @@ extern "C"
 				{
 					if(!pTextConv->ConvertText(utf8Text, strlen(utf8Text), &text, &numChar))
 					{
-						GtkApp::ShowUserAMessage("Error: Text conversion failed. Did you use the right encoding?");
-						CLangFileLoader::SendMessage("Error: Text conversion failed. Did you use the right encoding?");
+						const char *message = "Error: Function LangDataGetFromArray:\nText conversion failed.\nDid you use the right encoding?\n"
+												"Maybe in some texts you have special characters that can't be converted?\n"
+												"Try to use 'ICONV Encoding' with option 'ICONV Ignore'.";
+						GtkApp::ShowUserAMessage(message);
+						CLangFileLoader::SendMessage(message);
 						return false;
 					}
 				}
@@ -1911,6 +1951,11 @@ extern "C"
 	{
 		CCharacterSetConverter::useTranslit = gtk_check_menu_item_get_active(checkmenuitem);
 	}
+	
+	static void cb_ToggleLibiconvIgnore(GtkCheckMenuItem *checkmenuitem)
+	{
+		CCharacterSetConverter::useIgnore = gtk_check_menu_item_get_active(checkmenuitem);
+	}
 
 	static void cb_ToggleWhitespaces(GtkCheckMenuItem *checkmenuitem)
 	{
@@ -2248,23 +2293,25 @@ extern "C"
 		pos2_item = gtk_separator_menu_item_new();
 		pos3_item = gtk_check_menu_item_new_with_label("Use ICONV Encoding");
 		pos4_item = gtk_check_menu_item_new_with_label("(EXPERT) ICONV Transliteration");
-		pos5_item = gtk_check_menu_item_new_with_label("Remove Whitespaces");
-		pos6_item = gtk_check_menu_item_new_with_label("Search In Text Column");
+		pos5_item = gtk_check_menu_item_new_with_label("(EXPERT) ICONV Ignore");
+		pos6_item = gtk_check_menu_item_new_with_label("Remove Whitespaces");
+		pos7_item = gtk_check_menu_item_new_with_label("Search In Text Column");
 
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos1_item), GtkApp::Set::darkTheme);
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos3_item), GtkApp::Set::libiconvEncoding);
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos4_item), CCharacterSetConverter::useTranslit);
-		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos5_item), GtkApp::Set::remWhitespaces);
-		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos6_item), (GtkApp::Set::defaultSearchCol == COLUMN_TEXT));
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos5_item), CCharacterSetConverter::useIgnore);
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos6_item), GtkApp::Set::remWhitespaces);
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(pos7_item), (GtkApp::Set::defaultSearchCol == COLUMN_TEXT));
 
 		// accel group
 		gtk_widget_add_accelerator(pos1_item, "activate", accel_group,
 								   GDK_KEY_F12, (GdkModifierType)(NULL), GTK_ACCEL_VISIBLE);
 
-		gtk_widget_add_accelerator(pos5_item, "activate", accel_group,
+		gtk_widget_add_accelerator(pos6_item, "activate", accel_group,
 								   GDK_KEY_F11, (GdkModifierType)(NULL), GTK_ACCEL_VISIBLE);
 
-		gtk_widget_add_accelerator(pos6_item, "activate", accel_group,
+		gtk_widget_add_accelerator(pos7_item, "activate", accel_group,
 								   GDK_KEY_F10, (GdkModifierType)(NULL), GTK_ACCEL_VISIBLE);
 
 		gtk_menu_item_set_submenu(GTK_MENU_ITEM(topMenuItem), menu);
@@ -2274,6 +2321,7 @@ extern "C"
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos4_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos5_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos6_item);
+		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos7_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menubar), topMenuItem);
 
 		// g_signals
@@ -2282,8 +2330,9 @@ extern "C"
 
 		g_signal_connect(G_OBJECT(pos3_item), "toggled", G_CALLBACK(cb_ToggleLibiconvEncoding), NULL);
 		g_signal_connect(G_OBJECT(pos4_item), "toggled", G_CALLBACK(cb_ToggleLibiconvTranslit), NULL);
-		g_signal_connect(G_OBJECT(pos5_item), "toggled", G_CALLBACK(cb_ToggleWhitespaces), NULL);
-		g_signal_connect(G_OBJECT(pos6_item), "toggled", G_CALLBACK(cb_ToggleSearchInTextCol), NULL);
+		g_signal_connect(G_OBJECT(pos5_item), "toggled", G_CALLBACK(cb_ToggleLibiconvIgnore), NULL);
+		g_signal_connect(G_OBJECT(pos6_item), "toggled", G_CALLBACK(cb_ToggleWhitespaces), NULL);
+		g_signal_connect(G_OBJECT(pos7_item), "toggled", G_CALLBACK(cb_ToggleSearchInTextCol), NULL);
 		//---------------------------------
 
 		// -------- Help menu --------
@@ -2666,6 +2715,9 @@ extern "C"
 		if (CSettingsFile::GetVarNumber("iconvTranslit", state))
 			(state == 1) ? CCharacterSetConverter::useTranslit = true : CCharacterSetConverter::useTranslit = false;
 
+		if (CSettingsFile::GetVarNumber("iconvIgnore", state))
+			(state == 1) ? CCharacterSetConverter::useIgnore = true : CCharacterSetConverter::useIgnore = false;
+
 		// Finish
 		CSettingsFile::Done();
 	}
@@ -2687,6 +2739,9 @@ extern "C"
 
 		(CCharacterSetConverter::useTranslit) ? state = 1 : state = 0;
 		CSettingsFile::SaveVarNumber("iconvTranslit", state);
+
+		(CCharacterSetConverter::useIgnore) ? state = 1 : state = 0;
+		CSettingsFile::SaveVarNumber("iconvIgnore", state);
 
 		// Finish
 		CSettingsFile::Done();
