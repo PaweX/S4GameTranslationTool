@@ -48,6 +48,7 @@ public:
 
 	// Static fields
 	static bool useTranslit;
+	static bool useIgnore;
 
 	// Static methods
 	static const char* GetLangCode(const int* langNum);

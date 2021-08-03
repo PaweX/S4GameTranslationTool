@@ -22,7 +22,7 @@
 
 #include <string>
 
-#define S4GTT_PROGRAM_VERSION "0.97 beta"
+#define S4GTT_PROGRAM_VERSION "0.973 beta"
 
 
 #define S4TT_PROJECT_FILE_EXTENSION ".s4_translation_project" // project file name

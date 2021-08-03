@@ -1275,12 +1275,18 @@ bool CLangFileLoader::DoLoadProject()
 
 			getline(*thisObj->langFile, line);
 
-			if (strncmp(line.c_str(), "## Text", 7) == 0)
+			if (strncmp(line.c_str(), "## Text", 7) == 0) // if true
+			{
+				do // check if the new text starts with 'enter' character and remove it if present
+				{
+					getline(*thisObj->langFile, line);
+				} while (line == "" || line == "\r");
+
 				break;
+			}
 		}
 
-		getline(*thisObj->langFile, line);
-		if (line != "####")
+		if (strncmp(line.c_str(), "####", 4) != 0) // when the strings are different
 		{
 			str.append(line);
 
@@ -1291,7 +1297,7 @@ bool CLangFileLoader::DoLoadProject()
 
 				getline(*thisObj->langFile, line);
 
-				if (line != "####")
+				if (strncmp(line.c_str(), "####", 4) != 0) // when the strings are different
 					str.append("\n" + line);
 				else
 					break;

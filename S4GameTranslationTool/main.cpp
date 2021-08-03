@@ -26,7 +26,7 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
 	GtkAppMain(NULL, NULL);
 	return 0;
 }
-# else
+#else
 int main(int argc, char **argv)
 {
 	GtkAppMain(argc, argv);

@@ -23,6 +23,7 @@
 
 CCharacterSetConverter* CCharacterSetConverter::thisObj = nullptr;
 bool CCharacterSetConverter::useTranslit = false;
+bool CCharacterSetConverter::useIgnore = false;
 
 // Constructor
 CCharacterSetConverter::CCharacterSetConverter(const char* tocode, const char* fromcode)
@@ -32,6 +33,9 @@ CCharacterSetConverter::CCharacterSetConverter(const char* tocode, const char* f
 
 	if (CCharacterSetConverter::useTranslit)
 		strToCode.append("//TRANSLIT");
+
+	if (CCharacterSetConverter::useIgnore)
+		strToCode.append("//IGNORE");
 
 	descriptor = iconv_open(strToCode.c_str(), fromcode);
 	if (descriptor < 0)
