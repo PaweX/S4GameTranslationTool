@@ -70,7 +70,7 @@ extern "C"
 			bool darkTheme = false;
 			bool remWhitespaces = true;
 			int defaultSearchCol = COLUMN_TEXT;
-			bool libiconvEncoding = false;
+			bool libiconvEncoding = true;
 		}
 
 		//***********************
@@ -2148,7 +2148,7 @@ extern "C"
 		menubar = gtk_menu_bar_new();
 
 		// -------- File menu --------
-		GtkApp::Wid::menubar = menu = gtk_menu_new();
+		GtkApp::Wid::menubar = menu = gtk_menu_new(); //P: AfteraWhile check: I'm not sure about it, is it correct?
 
 		topMenuItem = gtk_menu_item_new_with_mnemonic("_File");
 
@@ -2286,14 +2286,18 @@ extern "C"
 
 		// -------- Settings menu --------
 		menu = gtk_menu_new();
+		pos9_item = gtk_menu_new();
 
 		topMenuItem = gtk_menu_item_new_with_mnemonic("_Settings");
+		pos8_item = gtk_menu_item_new_with_mnemonic("_ICONV");
 
 		pos1_item = gtk_check_menu_item_new_with_label("Dark Theme");
 		pos2_item = gtk_separator_menu_item_new();
+
 		pos3_item = gtk_check_menu_item_new_with_label("Use ICONV Encoding");
 		pos4_item = gtk_check_menu_item_new_with_label("(EXPERT) ICONV Transliteration");
 		pos5_item = gtk_check_menu_item_new_with_label("(EXPERT) ICONV Ignore");
+
 		pos6_item = gtk_check_menu_item_new_with_label("Remove Whitespaces");
 		pos7_item = gtk_check_menu_item_new_with_label("Search In Text Column");
 
@@ -2315,11 +2319,16 @@ extern "C"
 								   GDK_KEY_F10, (GdkModifierType)(NULL), GTK_ACCEL_VISIBLE);
 
 		gtk_menu_item_set_submenu(GTK_MENU_ITEM(topMenuItem), menu);
+		gtk_menu_item_set_submenu(GTK_MENU_ITEM(pos8_item), pos9_item);
+
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos1_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos2_item);
-		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos3_item);
-		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos4_item);
-		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos5_item);
+
+		gtk_menu_shell_append(GTK_MENU_SHELL(pos9_item), pos3_item);
+		gtk_menu_shell_append(GTK_MENU_SHELL(pos9_item), pos4_item);
+		gtk_menu_shell_append(GTK_MENU_SHELL(pos9_item), pos5_item);
+		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos8_item);
+
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos6_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), pos7_item);
 		gtk_menu_shell_append(GTK_MENU_SHELL(menubar), topMenuItem);
